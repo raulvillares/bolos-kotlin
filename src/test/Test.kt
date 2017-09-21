@@ -28,4 +28,14 @@ class BolosTest {
         assertEquals(20, partida.resultado)
     }
 
+    @Test
+    fun unSpare() {
+        crearPartida()
+        partida.tirar(5)
+        partida.tirar(5)
+        partida.tirar(3)
+        partida.tirar(0, 17)
+        assertEquals(16, partida.resultado)
+    }
+
 }

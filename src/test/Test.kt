@@ -1,7 +1,6 @@
 package com.raulvillares.kotlin.katas.bolos.test
 
 import com.raulvillares.kotlin.katas.bolos.produccion.Partida
-import org.junit.Ignore
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.BeforeEach
 import org.junit.jupiter.api.Test
@@ -19,25 +18,30 @@ class BolosTest {
     fun peorPartida() {
         crearPartida()
         partida.tirar(0, 20)
-        assertEquals(0, partida.resultado)
+        comprobarResultado(0)
     }
 
     @Test
     fun todoUnos() {
         crearPartida()
         partida.tirar(1, 20)
-        assertEquals(20, partida.resultado)
+        comprobarResultado(20)
     }
 
     @Test
-    @Ignore
-    fun unSpare() {
+    fun unSemipleno() {
         crearPartida()
-        partida.tirar(5)
-        partida.tirar(5)
+        semipleno()
         partida.tirar(3)
         partida.tirar(0, 17)
-        assertEquals(16, partida.resultado)
+        comprobarResultado(16)
     }
+
+    private fun semipleno() {
+        this.partida.tirar(5)
+        this.partida.tirar(5)
+    }
+
+    private fun comprobarResultado(resultadoEsperado : Int) = assertEquals(resultadoEsperado, partida.resultado)
 
 }

@@ -17,14 +17,14 @@ class BolosTest {
     @Test
     fun peorPartida() {
         crearPartida()
-        for(tirada in 1..20) partida.tirar(0)
+        partida.tirar(0, 20)
         assertEquals(0, partida.resultado)
     }
 
     @Test
     fun todoUnos() {
         crearPartida()
-        for(tirada in 1..20) partida.tirar(1)
+        partida.tirar(1, 20)
         assertEquals(20, partida.resultado)
     }
 

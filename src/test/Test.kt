@@ -34,6 +34,15 @@ class BolosTest {
         comprobarResultado(16)
     }
 
+    @Test
+    fun unPleno() {
+        partida.tirar(10)
+        partida.tirar(3)
+        partida.tirar(4)
+        partida.tirar(0, 16)
+        comprobarResultado(24)
+    }
+
     private fun semipleno() {
         this.partida.tirar(5)
         this.partida.tirar(5)

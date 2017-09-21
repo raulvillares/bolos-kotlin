@@ -8,16 +8,28 @@ class Partida {
     val  resultado : Int
         get() {
             var total = 0
-            for(indiceTurno in 0..19 step 2) {
-                val bolosDerribados = puntosTurno(indiceTurno)
-                total += bolosDerribados
-                total += if(bolosDerribados.esSemipleno) puntosExtraSemipleno(indiceTurno) else 0
+            var indiceTirada = 0
+            for(turno in 1..10) {
+                when {
+                    tiradas[indiceTirada] == 10 -> {
+                        total += 10 + tiradas[indiceTirada+1] + tiradas[indiceTirada+2]
+                        indiceTirada += 1
+                    }
+                    puntosTurno(indiceTirada) == 10 -> {
+                        total += puntosTurno(indiceTirada) + puntosExtraSemipleno(indiceTirada)
+                        indiceTirada += 2
+                    }
+                    else -> {
+                        total += puntosTurno(indiceTirada)
+                        indiceTirada += 2
+                    }
+                }
             }
             return total
         }
 
-    private fun puntosTurno(indiceTurno : Int) = tiradas[indiceTurno] + tiradas[indiceTurno+1]
-    private fun puntosExtraSemipleno(indiceTurno : Int) = tiradas[indiceTurno+2]
+    private fun puntosTurno(indiceTirada : Int) = tiradas[indiceTirada] + tiradas[indiceTirada+1]
+    private fun puntosExtraSemipleno(indiceTirada : Int) = tiradas[indiceTirada+2]
 
     fun tirar(bolosDerribados : Int, veces : Int = 1) {
         for (tirada in 1..veces) this.tiradas.add(bolosDerribados)

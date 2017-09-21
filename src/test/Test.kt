@@ -36,7 +36,7 @@ class BolosTest {
 
     @Test
     fun unPleno() {
-        partida.tirar(10)
+        pleno()
         partida.tirar(3)
         partida.tirar(4)
         partida.tirar(0, 16)
@@ -46,6 +46,10 @@ class BolosTest {
     private fun semipleno() {
         this.partida.tirar(5)
         this.partida.tirar(5)
+    }
+
+    private fun pleno() {
+        this.partida.tirar(10)
     }
 
     private fun comprobarResultado(resultadoEsperado : Int) = assertEquals(resultadoEsperado, partida.resultado)

@@ -11,16 +11,16 @@ class Partida {
             var indiceTirada = 0
             for(turno in 1..10) {
                 when {
-                    tiradas[indiceTirada] == 10 -> {
-                        total += 10 + tiradas[indiceTirada+1] + tiradas[indiceTirada+2]
+                    esPleno(indiceTirada) -> {
+                        total += 10 + puntosExtraPleno(indiceTirada)
                         indiceTirada += 1
                     }
-                    puntosTurno(indiceTirada) == 10 -> {
-                        total += puntosTurno(indiceTirada) + puntosExtraSemipleno(indiceTirada)
+                    esSemipleno(indiceTirada) -> {
+                        total += 10 + puntosExtraSemipleno(indiceTirada)
                         indiceTirada += 2
                     }
                     else -> {
-                        total += puntosTurno(indiceTirada)
+                        total += puntosTiradaNormal(indiceTirada)
                         indiceTirada += 2
                     }
                 }
@@ -28,8 +28,11 @@ class Partida {
             return total
         }
 
-    private fun puntosTurno(indiceTirada : Int) = tiradas[indiceTirada] + tiradas[indiceTirada+1]
+    private fun esPleno(indiceTirada : Int) = tiradas[indiceTirada] == 10
+    private fun esSemipleno(indiceTirada : Int) = tiradas[indiceTirada] + tiradas[indiceTirada+1] == 10
+    private fun puntosTiradaNormal(indiceTirada : Int) = tiradas[indiceTirada] + tiradas[indiceTirada+1]
     private fun puntosExtraSemipleno(indiceTirada : Int) = tiradas[indiceTirada+2]
+    private fun puntosExtraPleno(indiceTirada : Int) = tiradas[indiceTirada+1] + tiradas[indiceTirada+2]
 
     fun tirar(bolosDerribados : Int, veces : Int = 1) {
         for (tirada in 1..veces) this.tiradas.add(bolosDerribados)

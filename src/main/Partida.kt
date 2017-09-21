@@ -1,3 +1,5 @@
 package com.raulvillares.kotlin.katas.bolos.produccion
 
-class Partida
+class Partida {
+    fun tirar(bolosDerribados : Int) {}
+}

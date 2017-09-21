@@ -15,6 +15,8 @@ class BolosTest {
     fun peorPartida() {
         val partida = Partida()
         partida.tirar(0)
+        for(tirada in 1..20) partida.tirar(0)
+        Assertions.assertEquals(0, partida.resultado)
     }
 
 }

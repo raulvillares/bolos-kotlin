@@ -16,21 +16,18 @@ class BolosTest {
 
     @Test
     fun peorPartida() {
-        crearPartida()
         partida.tirar(0, 20)
         comprobarResultado(0)
     }
 
     @Test
     fun todoUnos() {
-        crearPartida()
         partida.tirar(1, 20)
         comprobarResultado(20)
     }
 
     @Test
     fun unSemipleno() {
-        crearPartida()
         semipleno()
         partida.tirar(3)
         partida.tirar(0, 17)
